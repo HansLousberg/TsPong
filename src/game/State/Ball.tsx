@@ -21,17 +21,17 @@ export class Ball{
     }
 
     public getDirection():number{
-        return this.direction 
+        return this.direction; 
     }
 
     public getDirectionAsVector():Vector2{
         if(!this.vector){
-            this.vector = new Vector2(Math.cos(this.direction),Math.sin(this.direction))
+            this.vector = new Vector2(Math.cos(this.direction),Math.sin(this.direction));
         }
-        return this.vector
+        return this.vector;
     }
 
     public getTrajectory():Trajectory{
-        return new Trajectory(this.position,this.getDirectionAsVector(),this.speed)
+        return new Trajectory(this.position,this.getDirectionAsVector(),this.speed);
     }
 }

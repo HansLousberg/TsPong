@@ -14,18 +14,18 @@ export class AddDirection implements StateChange{
     apply(s:GameState):GameState{
         let paddle:Paddle;
         switch(this.paddleID){
-            case(PaddleID.PLAYER):
-                paddle = s.playerPaddle
-                break;
-            case(PaddleID.OPPONENT):
-                paddle = s.opponentPaddle;
-                break;
-            default:
-                console.log("move AddDirection hit default")
-                paddle = s.playerPaddle
-                break;
+        case(PaddleID.PLAYER):
+            paddle = s.playerPaddle;
+            break;
+        case(PaddleID.OPPONENT):
+            paddle = s.opponentPaddle;
+            break;
+        default:
+            console.log("move AddDirection hit default");
+            paddle = s.playerPaddle;
+            break;
         }
-        paddle.direction.add(this.direction)
+        paddle.direction.add(this.direction);
         return s;
     }
 }
@@ -40,18 +40,18 @@ export class RemoveDirection implements StateChange{
     apply(s:GameState):GameState{
         let paddle:Paddle;
         switch(this.paddleID){
-            case(PaddleID.PLAYER):
-                paddle = s.playerPaddle
-                break;
-            case(PaddleID.OPPONENT):
-                paddle = s.opponentPaddle;
-                break;
-            default:
-                console.log("move AddDirection hit default")
-                paddle = s.playerPaddle
-                break;
+        case(PaddleID.PLAYER):
+            paddle = s.playerPaddle;
+            break;
+        case(PaddleID.OPPONENT):
+            paddle = s.opponentPaddle;
+            break;
+        default:
+            console.log("move AddDirection hit default");
+            paddle = s.playerPaddle;
+            break;
         }
-        paddle.direction.delete(this.direction)
+        paddle.direction.delete(this.direction);
         return s;
     }
 }

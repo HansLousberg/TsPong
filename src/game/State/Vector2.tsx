@@ -1,5 +1,5 @@
 export function RadiansToVector2(radians:number):Vector2{
-    return new Vector2(Math.sin(radians),Math.cos(radians))
+    return new Vector2(Math.sin(radians),Math.cos(radians));
 }
 
 export class Vector2{
@@ -7,11 +7,11 @@ export class Vector2{
 
     }
     public radians():number{
-        let rad = Math.acos(this.x)
+        const rad = Math.acos(this.x);
         if(this.y<0){
-            return rad * -1
+            return rad * -1;
         }
-        return rad
+        return rad;
     }
 
     public add(vector:Vector2):Vector2{

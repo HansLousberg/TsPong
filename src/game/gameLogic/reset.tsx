@@ -5,10 +5,10 @@ import { StateChange } from "../State/StateChanges/StateChange";
 import { Vector2 } from "../State/Vector2";
 
 export class Reset implements StateChange{
-    private resetScore:boolean = false;
+    private resetScore = false;
     constructor(resetScore?:boolean){
         if (resetScore !==undefined){
-            this.resetScore = resetScore
+            this.resetScore = resetScore;
         }
     }
     apply(s: GameState): GameState {
@@ -19,7 +19,7 @@ export class Reset implements StateChange{
             s.playerScore = 0;
             s.opponentScore = 0;
         }
-        return s
+        return s;
     }
 
 }

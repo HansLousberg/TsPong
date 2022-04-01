@@ -78,7 +78,7 @@ export class Canvas
     }
 
     private removeUserEvents(){
-        window.removeEventListener("keydown",this.keyPressEventHandler)
+        window.removeEventListener("keydown",this.keyPressEventHandler);
         window.addEventListener("keyup",this.keyReleaseEventHandler);
 
     }
@@ -89,7 +89,7 @@ export class Canvas
     public loopFrame() {
         const ctx = this.state.canvasRef.current?.getContext("2d");
         const frame = this.state.frameCount + 1;
-        if (!!ctx) {
+        if (ctx) {
             this.props.draw(ctx, frame);
         }
         const nextFrameID = window.requestAnimationFrame(this.loopFrame);
@@ -108,42 +108,52 @@ export class Canvas
             height={this.props.height}
             width={this.props.width}
             ref={this.state.canvasRef}
-            style={{ border: "1px solid black" }}
+            style={{
+                border: "1px solid black",
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                marginLeft: `-${Math.round(this.props.width / 2)}px`,
+                marginTop: `-${Math.round(this.props.height / 2)}px`,
+            }}
         />);
     }
 
     private keyPressEventHandler(e:KeyboardEvent){
-        if(e.repeat) return
+        if(e.repeat){
+            return;
+        } 
         const sc = this.mapPressEvent(e);
-        if (!!sc) { this.props.stateChangeEvent(sc) }
+        if (sc) { 
+            this.props.stateChangeEvent(sc); 
+        }
     }
 
     private mapPressEvent(e: KeyboardEvent): any{
-        switch(e.key)
-        {
-            case "w":
-                return new AddDirection(PaddleID.PLAYER,PaddleDirection.UP);
-            case "s":
-                return new AddDirection(PaddleID.PLAYER,PaddleDirection.DOWN);
-            default:
-                return undefined;
+        switch(e.key){
+        case "w":
+            return new AddDirection(PaddleID.PLAYER,PaddleDirection.UP);
+        case "s":
+            return new AddDirection(PaddleID.PLAYER,PaddleDirection.DOWN);
+        default:
+            return undefined;
         }
     }
 
     public keyReleaseEventHandler(e:KeyboardEvent){
         const sc = this.mapReleaseEvent(e);
-        if (!!sc) { this.props.stateChangeEvent(sc) }
+        if (sc) { this.props.stateChangeEvent(sc); }
     }
 
     public mapReleaseEvent(e: KeyboardEvent): any{
         switch(e.key)
         {
-            case "w":
-                return new RemoveDirection(PaddleID.PLAYER,PaddleDirection.UP);
-            case "s":
-                return new RemoveDirection(PaddleID.PLAYER,PaddleDirection.DOWN);
-            default:
-                return undefined;
+        case "w":
+            return new RemoveDirection(PaddleID.PLAYER,PaddleDirection.UP);
+        case "s":
+            return new RemoveDirection(PaddleID.PLAYER,PaddleDirection.DOWN);
+        default:
+            return undefined;
         }
     }
 

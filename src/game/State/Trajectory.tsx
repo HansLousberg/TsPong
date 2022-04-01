@@ -9,6 +9,6 @@ export class Trajectory{
     }
 
     public getEndpoint():Vector2{
-        return this.vector.mul(this.distance).add(this.position)
+        return this.vector.mul(this.distance).add(this.position);
     }
 }
